@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.programmingpatternsproductcatalog.ProductCatalogViewController">
+<AnchorPane prefHeight="469.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.programmingpatternsproductcatalog.ProductCatalogViewController">
    <children>
-      <TableView fx:id="productTable" layoutX="33.0" layoutY="100.0" prefHeight="200.0" prefWidth="506.0">
+      <TableView fx:id="productTable" layoutX="33.0" layoutY="100.0" prefHeight="272.0" prefWidth="506.0">
         <columns>
           <TableColumn fx:id="productIdColumn" prefWidth="81.0" text="Product ID" />
           <TableColumn fx:id="productNameColumn" prefWidth="168.0" text="Name" />
@@ -20,17 +21,24 @@
             <TableColumn fx:id="productQuantityColumn" prefWidth="64.0" text="Quantity" />
         </columns>
       </TableView>
-      <Button fx:id="addProductButton" layoutX="33.0" layoutY="320.0" mnemonicParsing="false" text="Add Product" />
-      <Button fx:id="deleteProductButton" layoutX="413.0" layoutY="320.0" mnemonicParsing="false" text="Delete Product by ID" />
-      <Button layoutX="568.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Update Product Detail" />
-      <Label layoutX="566.0" layoutY="149.0" text="Filter by:" />
-      <Label layoutX="568.0" layoutY="222.0" text="Sort by:" />
-      <ChoiceBox fx:id="filterChoiceBox" layoutX="568.0" layoutY="175.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="sortChoiceBox" layoutX="568.0" layoutY="247.0" prefWidth="150.0" />
+      <Button fx:id="addProductButton" layoutX="33.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleAddProductButtonAction" text="Add Product" />
+      <Button fx:id="deleteProductButton" layoutX="413.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleDeleteProductButtonAction" text="Delete Product by ID" />
+      <Button fx:id="productDetailsButton" layoutX="568.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleUpdateProductButtonAction" prefHeight="25.0" prefWidth="150.0" text="Update Product Detail" />
+      <Label layoutX="569.0" layoutY="144.0" text="Filter by Category:" />
+      <Label layoutX="565.0" layoutY="330.0" text="Sort by:" />
+      <ChoiceBox fx:id="filterCategoryChoiceBox" layoutX="568.0" layoutY="161.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="sortChoiceBox" layoutX="565.0" layoutY="347.0" prefWidth="150.0" />
       <Label layoutX="259.0" layoutY="32.0" text="Product Catalog">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
+      <Label layoutX="565.0" layoutY="209.0" text="Filter by Price:" />
+      <Label layoutX="565.0" layoutY="226.0" text="Min" />
+      <Label layoutX="665.0" layoutY="226.0" text="Max" />
+      <TextField fx:id="minTextField" layoutX="566.0" layoutY="243.0" prefHeight="25.0" prefWidth="51.0" />
+      <TextField fx:id="maxTextField" layoutX="665.0" layoutY="243.0" prefHeight="25.0" prefWidth="51.0" />
+      <Button fx:id="filterPriceButton" layoutX="565.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleFilterByPriceButtonAction" prefHeight="25.0" prefWidth="150.0" text="Filter by Price" />
+      <Button fx:id="removeFiltersButton" layoutX="593.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleRemoveFiltersButton" text="Remove Filters" />
    </children>
 </AnchorPane>

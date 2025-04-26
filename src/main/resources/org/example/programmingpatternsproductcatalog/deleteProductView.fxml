@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="166.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.programmingpatternsproductcatalog.DeleteProductViewController">
    <children>
-      <Button fx:id="cancelButton" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" text="Cancel" />
-      <Button fx:id="confirmButton" layoutX="235.0" layoutY="126.0" mnemonicParsing="false" text="Confirm" />
-      <TextField layoutX="81.0" layoutY="71.0" />
+      <Button fx:id="cancelButton" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Cancel" />
+      <Button fx:id="confirmButton" layoutX="235.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
+      <TextField fx:id="productIdTextField" layoutX="81.0" layoutY="71.0" promptText="Product ID" />
       <Label layoutX="105.0" layoutY="29.0" text="Product ID">
          <font>
             <Font name="System Bold" size="20.0" />

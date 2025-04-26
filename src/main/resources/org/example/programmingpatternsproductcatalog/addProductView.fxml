@@ -9,8 +9,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.programmingpatternsproductcatalog.AddProductViewController">
    <children>
-      <Button fx:id="cancelButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Cancel" />
-      <Button fx:id="confirmButton" layoutX="239.0" layoutY="361.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="cancelButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Cancel" />
+      <Button fx:id="confirmButton" layoutX="256.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
       <TextField fx:id="productIdTextField" layoutX="90.0" layoutY="72.0" promptText="Product ID" />
       <TextField fx:id="productNameTextField" layoutX="90.0" layoutY="120.0" promptText="Name" />
       <TextField fx:id="productPriceTextField" layoutX="90.0" layoutY="168.0" promptText="Price" />

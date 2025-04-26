@@ -63,7 +63,6 @@ public class Database {
             pstmt.setString(4, product.getCategory());
             pstmt.setInt(5, product.getQuantity());
             pstmt.executeUpdate();
-            System.out.println("Data inserted successfully.");
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -77,14 +76,7 @@ public class Database {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            int rowsDeleted = pstmt.executeUpdate();
-
-            //provide feedback
-            if (rowsDeleted > 0) {
-                System.out.println("The product with ID " + id + " was deleted successfully.");
-            } else {
-                System.out.println("No product with the provided ID exists.");
-            }
+            pstmt.executeUpdate();
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -111,5 +103,24 @@ public class Database {
             System.out.println(e.getMessage());
         }
         return products;
+    }
+
+    public void updateProduct(int id, String name, double price, String category, int quantity) {
+        String sql = "UPDATE products SET id=?, name=?, price=?, category=?, quantity=? WHERE id=?";
+
+        try {
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setString(2, name);
+            pstmt.setDouble(3, price);
+            pstmt.setString(4, category);
+            pstmt.setInt(5, quantity);
+            pstmt.setInt(6, id);
+            pstmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

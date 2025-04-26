@@ -1,6 +1,8 @@
 package org.example.programmingpatternsproductcatalog;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class CatalogManager {
@@ -8,7 +10,10 @@ public class CatalogManager {
     private ArrayList<Product> productList;
 
     public CatalogManager() {
+        Database db = Database.getInstance();
+        db.createProductTable();
         productList = new ArrayList<>();
+        loadProductsFromDatabase();
     }
 
     public static CatalogManager getInstance() {
@@ -54,6 +59,39 @@ public class CatalogManager {
         return searchProductById(id, 0, productList.size() - 1);
     }
 
+    public void updateProduct(int id, String name, double price, String category, int quantity) {
+        try {
+            Database db = Database.getInstance();
+            Product product = searchProduct(id);
+            product.setId(id);
+            product.setName(name);
+            product.setPrice(price);
+            product.setCategory(category);
+            product.setQuantity(quantity);
+            db.updateProduct(id, name, price, category, quantity);
+        }
+        catch (ProductNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean isIdTaken(int id) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public HashSet<String> getCategories() {
+        HashSet<String> categories = new HashSet<>();
+        for (Product product : productList) {
+            categories.add(product.getCategory());
+        }
+        return categories;
+    }
+
     public List<Product> filterByCategory(String category) {
         return productList.stream().filter(product -> product.getCategory().equals(category)).toList();
     }
@@ -67,6 +105,15 @@ public class CatalogManager {
     }
 
     public void sortByPrice() {
-        productList.sort((p1, p2) -> (int) (p2.getPrice() - p1.getPrice()));
+        productList.sort((p1, p2) -> (int) (p1.getPrice() - p2.getPrice()));
+    }
+
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
+
+    public void reloadProducts() {
+        productList = new ArrayList<>();
+        loadProductsFromDatabase();
     }
 }
