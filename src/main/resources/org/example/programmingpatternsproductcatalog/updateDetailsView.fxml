@@ -16,7 +16,7 @@
       <TextField fx:id="productPriceTextField" layoutX="101.0" layoutY="188.0" promptText="Price" />
       <TextField fx:id="productCategoryTextField" layoutX="101.0" layoutY="242.0" promptText="Category" />
       <TextField fx:id="productQuantityTextField" layoutX="101.0" layoutY="294.0" promptText="Quantity" />
-      <Label layoutX="66.0" layoutY="32.0" text="Update Product Details">
+      <Label fx:id="titleLabel" layoutX="66.0" layoutY="32.0" text="Update Product Details">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

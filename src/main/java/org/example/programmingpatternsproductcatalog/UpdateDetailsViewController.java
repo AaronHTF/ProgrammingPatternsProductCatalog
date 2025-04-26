@@ -1,13 +1,18 @@
 package org.example.programmingpatternsproductcatalog;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class UpdateDetailsViewController {
+    @FXML
+    private Label titleLabel;
     @FXML
     private Button confirmButton;
     @FXML
@@ -51,11 +56,13 @@ public class UpdateDetailsViewController {
 
         if (id.trim().isEmpty() || name.trim().isEmpty() || price.trim().isEmpty() || category.trim().isEmpty() || quantity.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Please fill all the fields!");
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", controller.locale);
+            alert.setHeaderText(resourceBundle.getString("fillAllFields"));
             alert.showAndWait();
         } else {
             catalogManager.updateProduct(Integer.parseInt(id), name, Double.parseDouble(price), category, Integer.parseInt(quantity));
             catalogManager.reloadProducts();
+            controller.loadChoiceBoxes();
             controller.setTableContent();
 
             Stage stage = (Stage) confirmButton.getScene().getWindow();
@@ -71,5 +78,17 @@ public class UpdateDetailsViewController {
 
     public void setParentController(ProductCatalogViewController controller) {
         this.controller = controller;
+    }
+
+    public void loadLanguage(Locale locale) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", locale);
+        titleLabel.setText(resourceBundle.getString("updateProduct"));
+        productIdTextField.setPromptText(resourceBundle.getString("productId"));
+        productNameTextField.setPromptText(resourceBundle.getString("productName"));
+        productPriceTextField.setPromptText(resourceBundle.getString("productPrice"));
+        productCategoryTextField.setPromptText(resourceBundle.getString("productCategory"));
+        productQuantityTextField.setPromptText(resourceBundle.getString("productQuantity"));
+        confirmButton.setText(resourceBundle.getString("confirm"));
+        cancelButton.setText(resourceBundle.getString("cancel"));
     }
 }

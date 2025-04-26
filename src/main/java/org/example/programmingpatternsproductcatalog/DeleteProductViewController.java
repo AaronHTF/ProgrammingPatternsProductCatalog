@@ -1,14 +1,18 @@
 package org.example.programmingpatternsproductcatalog;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class DeleteProductViewController {
+    @FXML
+    private Label titleLabel;
     @FXML
     private Button confirmButton;
     @FXML
@@ -25,12 +29,14 @@ public class DeleteProductViewController {
 
         if (id.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Please enter the Product ID");
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", controller.locale);
+            alert.setHeaderText(resourceBundle.getString("missingId"));
             alert.showAndWait();
         } else {
             try {
                 catalogManager.deleteProductById(Integer.parseInt(id));
 
+                controller.loadChoiceBoxes();
                 controller.setTableContent();
 
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
@@ -38,8 +44,9 @@ public class DeleteProductViewController {
             }
             catch (ProductNotFoundException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Invalid Product ID");
-                alert.setContentText(e.getMessage());
+                ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", controller.locale);
+                alert.setHeaderText(resourceBundle.getString("invalidId"));
+                alert.setContentText(resourceBundle.getString("productNotFound"));
                 alert.showAndWait();
             }
         }
@@ -53,5 +60,13 @@ public class DeleteProductViewController {
 
     public void setParentController(ProductCatalogViewController controller) {
         this.controller = controller;
+    }
+
+    public void loadLanguage(Locale locale) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", locale);
+        titleLabel.setText(resourceBundle.getString("productId"));
+        productIdTextField.setPromptText(resourceBundle.getString("productId"));
+        confirmButton.setText(resourceBundle.getString("confirm"));
+        cancelButton.setText(resourceBundle.getString("cancel"));
     }
 }

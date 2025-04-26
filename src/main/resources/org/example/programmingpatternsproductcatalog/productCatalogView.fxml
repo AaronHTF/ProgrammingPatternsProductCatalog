@@ -21,24 +21,26 @@
             <TableColumn fx:id="productQuantityColumn" prefWidth="64.0" text="Quantity" />
         </columns>
       </TableView>
-      <Button fx:id="addProductButton" layoutX="33.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleAddProductButtonAction" text="Add Product" />
-      <Button fx:id="deleteProductButton" layoutX="413.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleDeleteProductButtonAction" text="Delete Product by ID" />
-      <Button fx:id="productDetailsButton" layoutX="568.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleUpdateProductButtonAction" prefHeight="25.0" prefWidth="150.0" text="Update Product Detail" />
-      <Label layoutX="569.0" layoutY="144.0" text="Filter by Category:" />
-      <Label layoutX="565.0" layoutY="330.0" text="Sort by:" />
+      <Button fx:id="addProductButton" layoutX="33.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleAddProductButtonAction" text="Add Product" textAlignment="CENTER" />
+      <Button fx:id="deleteProductButton" layoutX="413.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleDeleteProductButtonAction" text="Delete Product by ID" textAlignment="CENTER" />
+      <Button fx:id="productDetailsButton" layoutX="568.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleUpdateProductButtonAction" prefHeight="25.0" prefWidth="150.0" text="Update Product Detail" textAlignment="CENTER" />
+      <Label fx:id="filterByCategoryLabel" layoutX="569.0" layoutY="144.0" text="Filter by Category:" />
+      <Label fx:id="sortByLabel" layoutX="565.0" layoutY="330.0" text="Sort by:" />
       <ChoiceBox fx:id="filterCategoryChoiceBox" layoutX="568.0" layoutY="161.0" prefWidth="150.0" />
       <ChoiceBox fx:id="sortChoiceBox" layoutX="565.0" layoutY="347.0" prefWidth="150.0" />
-      <Label layoutX="259.0" layoutY="32.0" text="Product Catalog">
+      <Label fx:id="titleLabel" layoutX="259.0" layoutY="32.0" text="Product Catalog" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="565.0" layoutY="209.0" text="Filter by Price:" />
+      <Label fx:id="filterByPriceLabel" layoutX="565.0" layoutY="209.0" text="Filter by Price:" />
       <Label layoutX="565.0" layoutY="226.0" text="Min" />
       <Label layoutX="665.0" layoutY="226.0" text="Max" />
       <TextField fx:id="minTextField" layoutX="566.0" layoutY="243.0" prefHeight="25.0" prefWidth="51.0" />
       <TextField fx:id="maxTextField" layoutX="665.0" layoutY="243.0" prefHeight="25.0" prefWidth="51.0" />
-      <Button fx:id="filterPriceButton" layoutX="565.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleFilterByPriceButtonAction" prefHeight="25.0" prefWidth="150.0" text="Filter by Price" />
-      <Button fx:id="removeFiltersButton" layoutX="593.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleRemoveFiltersButton" text="Remove Filters" />
+      <Button fx:id="filterPriceButton" layoutX="565.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleFilterByPriceButtonAction" prefHeight="25.0" prefWidth="150.0" text="Filter by Price" textAlignment="CENTER" />
+      <Button fx:id="removeFiltersButton" layoutX="593.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleRemoveFiltersButton" text="Remove Filters" textAlignment="CENTER" />
+      <Button fx:id="englishButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleEnglishButtonAction" text="English" textAlignment="CENTER" />
+      <Button fx:id="frenchButton" layoutX="75.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleFrenchButtonAction" text="French" textAlignment="CENTER" />
    </children>
 </AnchorPane>

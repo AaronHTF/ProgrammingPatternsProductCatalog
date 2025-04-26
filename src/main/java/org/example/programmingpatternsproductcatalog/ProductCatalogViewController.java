@@ -10,21 +10,35 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ProductCatalogViewController implements Initializable {
+    @FXML
+    private Button englishButton;
+    @FXML
+    private Button frenchButton;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label filterByCategoryLabel;
+    @FXML
+    private Label filterByPriceLabel;
+    @FXML
+    private Label sortByLabel;
     @FXML
     private Button addProductButton;
     @FXML
     private Button deleteProductButton;
     @FXML
     private Button productDetailsButton;
+    @FXML
+    private Button removeFiltersButton;
     @FXML
     private ChoiceBox<String> sortChoiceBox;
     @FXML
@@ -50,6 +64,7 @@ public class ProductCatalogViewController implements Initializable {
 
     CatalogManager catalogManager = CatalogManager.getInstance();;
     ObservableList<Product> products;
+    Locale locale;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +76,7 @@ public class ProductCatalogViewController implements Initializable {
 
         setTableContent();
         loadChoiceBoxes();
+        locale = Locale.getDefault();
     }
 
     @FXML
@@ -70,6 +86,7 @@ public class ProductCatalogViewController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         AddProductViewController addProductViewController = fxmlLoader.getController();
         addProductViewController.setParentController(this);
+        addProductViewController.loadLanguage(locale);
         stage.setTitle("Add a Product");
         stage.setScene(scene);
         stage.show();
@@ -82,6 +99,7 @@ public class ProductCatalogViewController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         DeleteProductViewController deleteProductViewController = fxmlLoader.getController();
         deleteProductViewController.setParentController(this);
+        deleteProductViewController.loadLanguage(locale);
         stage.setTitle("Delete a Product");
         stage.setScene(scene);
         stage.show();
@@ -97,6 +115,7 @@ public class ProductCatalogViewController implements Initializable {
         UpdateDetailsViewController updateDetailsViewController = fxmlLoader.getController();
         updateDetailsViewController.loadProduct(id);
         updateDetailsViewController.setParentController(this);
+        updateDetailsViewController.loadLanguage(locale);
         stage.setTitle("Update a Product");
         stage.setScene(scene);
         stage.show();
@@ -116,8 +135,9 @@ public class ProductCatalogViewController implements Initializable {
         String max = maxTextField.getText();
 
         if (min.trim().isEmpty() || max.trim().isEmpty()) {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", locale);
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Please enter the minimum and maximum values");
+            alert.setHeaderText(resourceBundle.getString("minAndMax"));
             alert.showAndWait();
         } else {
             List<Product> productsFilteredByPrice = catalogManager.filterByPrice(Double.parseDouble(min), Double.parseDouble(max));
@@ -156,5 +176,37 @@ public class ProductCatalogViewController implements Initializable {
 
         sortChoiceBox.setOnAction(this::selectSort);
         filterCategoryChoiceBox.setOnAction(this::selectCategory);
+    }
+
+    public void changeLanguage(Locale locale) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Messages", locale);
+        titleLabel.setText(resourceBundle.getString("title"));
+        filterByCategoryLabel.setText(resourceBundle.getString("filterByCategory"));
+        filterByPriceLabel.setText(resourceBundle.getString("filterByPrice"));
+        sortByLabel.setText(resourceBundle.getString("sortBy"));
+        addProductButton.setText(resourceBundle.getString("addProduct"));
+        deleteProductButton.setText(resourceBundle.getString("deleteProduct"));
+        productDetailsButton.setText(resourceBundle.getString("updateProduct"));
+        filterPriceButton.setText(resourceBundle.getString("filterByPrice"));
+        removeFiltersButton.setText(resourceBundle.getString("removeFilters"));
+        productIdColumn.setText(resourceBundle.getString("productId"));
+        productNameColumn.setText(resourceBundle.getString("productName"));
+        productPriceColumn.setText(resourceBundle.getString("productPrice"));
+        productCategoryColumn.setText(resourceBundle.getString("productCategory"));
+        productQuantityColumn.setText(resourceBundle.getString("productQuantity"));
+        englishButton.setText(resourceBundle.getString("english"));
+        frenchButton.setText(resourceBundle.getString("french"));
+    }
+
+    @FXML
+    public void handleEnglishButtonAction() {
+        locale = Locale.of("en", "US");
+        changeLanguage(locale);
+    }
+
+    @FXML
+    public void handleFrenchButtonAction() {
+        locale = Locale.of("fr", "CA");
+        changeLanguage(locale);
     }
 }
