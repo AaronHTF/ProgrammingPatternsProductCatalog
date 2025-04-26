@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="425.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.programmingpatternsproductcatalog.UpdateDetailsViewController">
+   <children>
+      <Button fx:id="cancelButton" layoutX="34.0" layoutY="366.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="confirmButton" layoutX="259.0" layoutY="366.0" mnemonicParsing="false" text="Confirm" />
+      <TextField fx:id="productIdTextField" layoutX="101.0" layoutY="92.0" promptText="Product ID" />
+      <TextField fx:id="productNameTextField" layoutX="101.0" layoutY="140.0" promptText="Name" />
+      <TextField fx:id="productPriceTextField" layoutX="101.0" layoutY="188.0" promptText="Price" />
+      <TextField fx:id="productCategoryTextField" layoutX="101.0" layoutY="242.0" promptText="Category" />
+      <TextField fx:id="productQuantityTextField" layoutX="101.0" layoutY="294.0" promptText="Quantity" />
+      <Label layoutX="66.0" layoutY="32.0" text="Update Product Details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
