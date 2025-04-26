@@ -1,6 +1,11 @@
+// -------------------------------------------------------
+// Assignment 3
+// Written by: Aaron Ho Tim Fat 2314854
+// For “Programming patterns” Section 2 – Winter 2025
+// --------------------------------------------------------
+
 package org.example.programmingpatternsproductcatalog;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,3 +1,9 @@
+// -------------------------------------------------------
+// Assignment 3
+// Written by: Aaron Ho Tim Fat 2314854
+// For “Programming patterns” Section 2 – Winter 2025
+// --------------------------------------------------------
+
 package org.example.programmingpatternsproductcatalog;
 
 import javafx.collections.FXCollections;
